@@ -4,6 +4,7 @@ import passport from "passport";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
+import MongoStore from "connect-mongo";
 import { connectDB } from "./db/connection.js";
 import userRoutes from "./routes/users.js";
 import gigRoutes from "./routes/gigs.js";
@@ -24,9 +25,14 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI,
+      ttl: 14 * 24 * 60 * 60, // 14 days
+    }),
     cookie: {
       secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      maxAge: 14 * 24 * 60 * 60 * 1000, // 14 days in ms
     },
   })
 );
@@ -47,8 +53,6 @@ app.get("/api/health", (req, res) => {
 // Serve React frontend in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/dist")));
-
-  // All non-API routes → serve React's index.html (handles React Router)
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../client/dist", "index.html"));
   });
