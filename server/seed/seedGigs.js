@@ -10,19 +10,64 @@ const RATE_TYPES = ["hourly", "flat"];
 const STATUSES = ["completed", "in-progress", "unpaid"];
 
 const CLIENT_NAMES = [
-  "Alice Johnson", "Bob Smith", "Carol White", "David Brown",
-  "Emma Davis", "Frank Miller", "Grace Wilson", "Henry Moore",
-  "Isabella Taylor", "James Anderson", "Karen Thomas", "Liam Jackson",
-  "Mia Harris", "Noah Martin", "Olivia Lee", "Peter Walker",
-  "Quinn Hall", "Rachel Allen", "Samuel Young", "Tara King",
+  "Alice Johnson",
+  "Bob Smith",
+  "Carol White",
+  "David Brown",
+  "Emma Davis",
+  "Frank Miller",
+  "Grace Wilson",
+  "Henry Moore",
+  "Isabella Taylor",
+  "James Anderson",
+  "Karen Thomas",
+  "Liam Jackson",
+  "Mia Harris",
+  "Noah Martin",
+  "Olivia Lee",
+  "Peter Walker",
+  "Quinn Hall",
+  "Rachel Allen",
+  "Samuel Young",
+  "Tara King",
 ];
 
 const GIG_TITLES = {
-  tutoring: ["Math tutoring", "Physics help", "SAT prep", "Calculus session", "Chemistry review"],
-  delivery: ["DoorDash shift", "UberEats delivery", "Grocery run", "Package delivery", "Food delivery"],
-  design: ["Logo design", "UI mockup", "Banner design", "Brand kit", "Social media graphics"],
-  retail: ["Weekend shift", "Holiday cover", "Evening shift", "Morning shift", "Stock room help"],
-  other: ["Event setup", "Dog walking", "Photography", "Video editing", "Data entry"],
+  tutoring: [
+    "Math tutoring",
+    "Physics help",
+    "SAT prep",
+    "Calculus session",
+    "Chemistry review",
+  ],
+  delivery: [
+    "DoorDash shift",
+    "UberEats delivery",
+    "Grocery run",
+    "Package delivery",
+    "Food delivery",
+  ],
+  design: [
+    "Logo design",
+    "UI mockup",
+    "Banner design",
+    "Brand kit",
+    "Social media graphics",
+  ],
+  retail: [
+    "Weekend shift",
+    "Holiday cover",
+    "Evening shift",
+    "Morning shift",
+    "Stock room help",
+  ],
+  other: [
+    "Event setup",
+    "Dog walking",
+    "Photography",
+    "Video editing",
+    "Data entry",
+  ],
 };
 
 function randomInt(min, max) {
@@ -48,7 +93,9 @@ async function seed() {
 
     // Create a dummy user for seeded gigs
     const usersCollection = db.collection("users");
-    let seedUser = await usersCollection.findOne({ email: "seed@gigtrack.com" });
+    let seedUser = await usersCollection.findOne({
+      email: "seed@gigtrack.com",
+    });
 
     if (!seedUser) {
       const result = await usersCollection.insertOne({
@@ -83,7 +130,8 @@ async function seed() {
         rateType,
         earnings,
         clientRating: randomInt(1, 5),
-        clientNote: randomInt(0, 1) === 1 ? "Good client, would work again." : "",
+        clientNote:
+          randomInt(0, 1) === 1 ? "Good client, would work again." : "",
         status: randomItem(STATUSES),
         createdAt: new Date(),
       });

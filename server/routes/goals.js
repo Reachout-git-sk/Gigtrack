@@ -137,10 +137,12 @@ router.post("/:id/payouts", async (req, res) => {
       status,
     };
 
-    const result = await db.collection("goals").updateOne(
-      { _id: new ObjectId(req.params.id) },
-      { $push: { payouts: payout } }
-    );
+    const result = await db
+      .collection("goals")
+      .updateOne(
+        { _id: new ObjectId(req.params.id) },
+        { $push: { payouts: payout } }
+      );
 
     if (result.matchedCount === 0) {
       return res.status(404).json({ error: "Goal not found" });

@@ -60,8 +60,7 @@ router.post("/", requireAuth, async (req, res) => {
     }
 
     // Compute earnings server side
-    const earnings =
-      rateType === "hourly" ? rate * (hoursWorked || 0) : rate;
+    const earnings = rateType === "hourly" ? rate * (hoursWorked || 0) : rate;
 
     const gig = {
       userId: new ObjectId(req.user._id),
@@ -103,8 +102,7 @@ router.put("/:id", requireAuth, async (req, res) => {
       status,
     } = req.body;
 
-    const earnings =
-      rateType === "hourly" ? rate * (hoursWorked || 0) : rate;
+    const earnings = rateType === "hourly" ? rate * (hoursWorked || 0) : rate;
 
     const result = await db.collection("gigs").updateOne(
       {
@@ -178,7 +176,11 @@ router.get("/dashboard", requireAuth, async (req, res) => {
       byType[gig.gigType] = (byType[gig.gigType] || 0) + gig.earnings;
     });
 
-    res.json({ monthlyTotals, byType, totalEarnings: gigs.reduce((sum, g) => sum + g.earnings, 0) });
+    res.json({
+      monthlyTotals,
+      byType,
+      totalEarnings: gigs.reduce((sum, g) => sum + g.earnings, 0),
+    });
   } catch (err) {
     res.status(500).json({ error: "Server error" });
   }

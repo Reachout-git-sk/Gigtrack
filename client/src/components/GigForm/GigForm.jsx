@@ -37,9 +37,7 @@ export default function GigForm({ onSuccess, existingGig }) {
     setError("");
     setLoading(true);
     try {
-      const url = existingGig
-        ? `/api/gigs/${existingGig._id}`
-        : "/api/gigs";
+      const url = existingGig ? `/api/gigs/${existingGig._id}` : "/api/gigs";
       const method = existingGig ? "PUT" : "POST";
 
       const res = await fetch(url, {

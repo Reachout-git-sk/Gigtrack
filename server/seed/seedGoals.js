@@ -6,16 +6,31 @@ dotenv.config();
 const client = new MongoClient(process.env.MONGO_URI);
 
 const GOAL_LABELS = [
-  "January hustle", "February grind", "March momentum",
-  "April earnings", "May income push", "June side hustle",
-  "July income goal", "August earnings", "September target",
-  "October hustle", "November income", "December push",
+  "January hustle",
+  "February grind",
+  "March momentum",
+  "April earnings",
+  "May income push",
+  "June side hustle",
+  "July income goal",
+  "August earnings",
+  "September target",
+  "October hustle",
+  "November income",
+  "December push",
 ];
 
 const PAYOUT_SOURCES = [
-  "DoorDash", "UberEats", "Tutoring client", "Freelance design",
-  "Retail shift", "Campus job", "Photography gig", "Dog walking",
-  "Data entry", "Event staffing",
+  "DoorDash",
+  "UberEats",
+  "Tutoring client",
+  "Freelance design",
+  "Retail shift",
+  "Campus job",
+  "Photography gig",
+  "Dog walking",
+  "Data entry",
+  "Event staffing",
 ];
 
 function randomInt(min, max) {

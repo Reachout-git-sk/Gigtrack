@@ -35,10 +35,7 @@ export default function App() {
       <Navbar user={user} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route
-          path="/login"
-          element={<LoginPage onLogin={handleLogin} />}
-        />
+        <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/gigs" element={<GigsPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />

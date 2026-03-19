@@ -63,9 +63,7 @@ export default function PayoutList({ goalId, payouts, onRefresh }) {
             <span className="payoutlist-amount">
               ${payout.amount.toFixed(2)}
             </span>
-            <Badge
-              bg={payout.status === "received" ? "success" : "warning"}
-            >
+            <Badge bg={payout.status === "received" ? "success" : "warning"}>
               {payout.status}
             </Badge>
             <span className="payoutlist-date">

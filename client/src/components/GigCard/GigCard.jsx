@@ -44,9 +44,7 @@ export default function GigCard({ gig, onEdit, onDelete }) {
             </span>
           )}
         </div>
-        {gig.clientNote && (
-          <p className="gigcard-note">{gig.clientNote}</p>
-        )}
+        {gig.clientNote && <p className="gigcard-note">{gig.clientNote}</p>}
         <div className="gigcard-actions">
           <Button
             variant="outline-primary"
