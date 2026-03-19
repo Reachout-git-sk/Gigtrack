@@ -1,5 +1,6 @@
 import { MongoClient, ObjectId } from "mongodb";
 import dotenv from "dotenv";
+import bcrypt from "bcrypt";
 
 dotenv.config();
 
@@ -98,13 +99,14 @@ async function seed() {
     });
 
     if (!seedUser) {
-      const result = await usersCollection.insertOne({
-        name: "Seed User",
+    const passwordHash = await bcrypt.hash("demo1234", 10);
+    const result = await usersCollection.insertOne({
+        name: "Demo User",
         email: "seed@gigtrack.com",
-        passwordHash: "seeded",
+        passwordHash,
         createdAt: new Date(),
-      });
-      seedUser = { _id: result.insertedId };
+    });
+    seedUser = { _id: result.insertedId };
     }
 
     const gigsCollection = db.collection("gigs");
