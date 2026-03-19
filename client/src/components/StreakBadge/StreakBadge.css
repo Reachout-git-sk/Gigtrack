@@ -1,0 +1,25 @@
+.streakbadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, #f7971e, #ffd200);
+  color: #1a1a2e;
+  border-radius: 20px;
+  padding: 0.35rem 0.9rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(247, 151, 30, 0.3);
+}
+
+.streakbadge-fire {
+  font-size: 1.1rem;
+}
+
+.streakbadge-count {
+  font-size: 1.1rem;
+}
+
+.streakbadge-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+}

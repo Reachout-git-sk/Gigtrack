@@ -1,0 +1,89 @@
+.goalcard {
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+  border: 1px solid #e8e8f0;
+  transition: box-shadow 0.2s;
+}
+
+.goalcard:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.goalcard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.goalcard-label {
+  font-weight: 700;
+  margin: 0;
+  color: #1a1a2e;
+}
+
+.goalcard-month {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.goalcard-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.goalcard-progress-track {
+  background: #f0f0f5;
+  border-radius: 6px;
+  height: 10px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+
+.goalcard-progress-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+.goalcard-progress-fill--on-track {
+  background: linear-gradient(90deg, #2ecc71, #27ae60);
+}
+
+.goalcard-progress-fill--at-risk {
+  background: linear-gradient(90deg, #f39c12, #e67e22);
+}
+
+.goalcard-progress-fill--missed {
+  background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
+
+.goalcard-amounts {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.goalcard-received {
+  font-weight: 700;
+  color: #2ecc71;
+}
+
+.goalcard-target {
+  color: #555;
+}
+
+.goalcard-pending {
+  color: #e67e22;
+  font-style: italic;
+}
+
+.goalcard-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
