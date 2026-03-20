@@ -51,12 +51,28 @@ async function seed() {
     await client.connect();
     const db = client.db("gigtrack");
 
+    // Find the demo user
+    const seedUser = await db
+      .collection("users")
+      .findOne({ email: "seed@gigtrack.com" });
+
+    if (!seedUser) {
+      console.error(
+        "❌ Demo user not found. Run seedGigs.js first to create the demo user."
+      );
+      process.exit(1);
+    }
+
+    console.log(`✅ Found demo user: ${seedUser._id}`);
+
     const goalsCollection = db.collection("goals");
-    await goalsCollection.deleteMany({});
+
+    // Delete only this user's existing goals
+    await goalsCollection.deleteMany({ userId: seedUser._id });
 
     const goals = [];
 
-    // Generate goals for each month of 2024 — repeat to get 1000+ records
+    // 12 months x 7 repeats = 84 goals across 2024
     for (let repeat = 0; repeat < 84; repeat++) {
       const monthNum = (repeat % 12) + 1;
       const year = 2024;
@@ -78,6 +94,7 @@ async function seed() {
       }
 
       goals.push({
+        userId: seedUser._id, // ← attached to demo user
         label: GOAL_LABELS[monthNum - 1],
         targetAmount,
         month: monthStr,
@@ -87,7 +104,7 @@ async function seed() {
     }
 
     await goalsCollection.insertMany(goals);
-    console.log(`✅ Seeded ${goals.length} goal records successfully`);
+    console.log(`✅ Seeded ${goals.length} goal records for demo user`);
   } catch (err) {
     console.error("Seed error:", err);
   } finally {
