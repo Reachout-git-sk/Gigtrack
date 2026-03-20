@@ -1,25 +1,13 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import GigList from "../components/GigList/GigList.jsx";
+import PropTypes from "prop-types";
 
-export default function GigsPage() {
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    async function checkAuth() {
-      const res = await fetch("/api/auth/me", { credentials: "include" });
-      if (!res.ok) {
-        navigate("/login");
-      } else {
-        const data = await res.json();
-        setUser(data.user);
-      }
-    }
-    checkAuth();
-  }, [navigate]);
-
-  if (!user) return null;
-
+export default function GigsPage({ user }) {
   return <GigList userId={user.id} />;
 }
+
+GigsPage.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string,
+  }).isRequired,
+};

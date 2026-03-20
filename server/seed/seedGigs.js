@@ -99,14 +99,14 @@ async function seed() {
     });
 
     if (!seedUser) {
-    const passwordHash = await bcrypt.hash("demo1234", 10);
-    const result = await usersCollection.insertOne({
+      const passwordHash = await bcrypt.hash("demo1234", 10);
+      const result = await usersCollection.insertOne({
         name: "Demo User",
         email: "seed@gigtrack.com",
         passwordHash,
         createdAt: new Date(),
-    });
-    seedUser = { _id: result.insertedId };
+      });
+      seedUser = { _id: result.insertedId };
     }
 
     const gigsCollection = db.collection("gigs");
